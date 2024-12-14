@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const JobApply = () => {
     const {id} = useParams()
@@ -29,7 +30,27 @@ const JobApply = () => {
             linkedIn,
             github, 
             resume
-        }
+        };
+
+        fetch('http://localhost:5000/job-applications', {
+            method : 'POST',
+            headers : {
+                'content-type' : 'application/json'
+            },
+            body : JSON.stringify(jobApplication)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if(data.insertId){
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Application Submitted Successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
     }
     return (
      <div className="card bg-base-100 w-2/5 mx-auto shadow-2xl">
