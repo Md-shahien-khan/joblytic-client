@@ -27,7 +27,7 @@ const Banner = () => {
                 animate = {{color : ['#339fff', '#335bff']}}
                 transition={{duration : 1.5, repeat : Infinity}}
                 >Jobs</motion.span> For You!</motion.h1>
-            <p className="py-6">
+            <p className="py-6 text-blue-500">
             Joblytic is more than just a job board; it’s your partner in career advancement. We’re dedicated to connecting talented individuals with exciting opportunities. With our easy-to-use platform, you can search thousands of jobs, upload your resume, and apply with just a few clicks. Whether you’re a recent graduate or a seasoned professional, we’re here to help you find your dream job.
             </p>
             <button className="btn btn-primary">Get Started</button>
