@@ -2,9 +2,19 @@ import Lottie from "lottie-react";
 import loginAnimationData from '../../assets/Lottie/login.json'
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext/AuthContext";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { FaGoogle } from "react-icons/fa";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import auth from "../../firebase/firebase.init";
 const SignIn = () => {
     
-    const {signInUser} = useContext(AuthContext)
+    const {signInUser, loading} = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state || '/';
+    const provider = new GoogleAuthProvider();
+
+
     const handleSignIn = e =>{
         e.preventDefault();
 
@@ -15,11 +25,24 @@ const SignIn = () => {
 
         signInUser(email, password)
             .then(result =>{
-                console.log('Sign In', result.data)
+                console.log('Sign In', result.data);
+                navigate(from);
             })
             .catch(error => {
                 console.log(error);
-            });
+        });
+
+  
+    };
+    // Handle Google login
+    const handleGoogleSignIn = () => {
+        signInWithPopup(auth, provider)
+        .then(result => {
+            navigate(from);
+        })
+        .catch(error => {
+        console.log("Google login error:", error);
+        });
     }
     return (
         <div className="hero bg-base-200 min-h-screen">
@@ -48,7 +71,11 @@ const SignIn = () => {
                     </div>
                     <div className="form-control mt-6">
                         <button className="btn btn-primary">Sign In</button>
+                        <button className="btn btn-neutral mt-2" onClick={handleGoogleSignIn} disabled={loading}>
+                        <FaGoogle /> Login with Google
+                        </button>
                     </div>
+                    <Link to='/register'>new? then Register</Link>
                     </form>
                     {/* {
                     errorMessage && <p className="text-red-600 p-4">{errorMessage}

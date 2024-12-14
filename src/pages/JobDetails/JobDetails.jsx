@@ -1,11 +1,12 @@
+import { useLoaderData } from "react-router-dom";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-
-const RecentJobsCard = ({job}) => {
-    const {_id, title, company, company_logo, requirements, description, location, salaryRange} = job;
+const JobDetails = () => {
+    const {_id, title, company, company_logo, requirements, description, location, salaryRange} = useLoaderData();
     return (
-        <div className="card bg-base-100 shadow-2xl">
+        <div>
+            <div className="card bg-base-100 shadow-2xl">
         <div className='flex gap-2 m-2 items-center'>
             <figure>
                 <img
@@ -22,20 +23,21 @@ const RecentJobsCard = ({job}) => {
                 <div className="badge badge-secondary">NEW</div>
             </h2>
             <p>{description}</p>
-            <div className="flex gap-2 flex-wrap">
+            <div className="flex gap-2 ">
                 {
                     requirements.map((skill, index) => <p key={index} className="border rounded-lg text-center px-2 hover:text-blue-600 hover:bg-gray-100">{skill}</p>)
                 }
             </div>
             <div className="card-actions justify-between items-center mt-4">
                 <p>Salary : {salaryRange.min} - {salaryRange.max} {salaryRange.currency}</p>
-                <Link to={`/jobs/${_id}`}>
-                    <button className="btn btn-primary">Apply</button>
+                <Link to={`/jobApply/${_id}`}>
+                    <button className="btn btn-primary">Apply Now</button>
                 </Link>
             </div>
+        </div>
         </div>
         </div>
     );
 };
 
-export default RecentJobsCard;
+export default JobDetails;
