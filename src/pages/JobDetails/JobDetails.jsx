@@ -23,7 +23,7 @@ const JobDetails = () => {
                 <div className="badge badge-secondary">NEW</div>
             </h2>
             <p>{description}</p>
-            <div className="flex gap-2 ">
+            <div className="flex gap-2 flex-wrap">
                 {
                     requirements.map((skill, index) => <p key={index} className="border rounded-lg text-center px-2 hover:text-blue-600 hover:bg-gray-100">{skill}</p>)
                 }

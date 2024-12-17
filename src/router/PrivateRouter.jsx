@@ -16,11 +16,11 @@ const PrivateRouter = ({children}) => {
 
     return <Navigate to='/signin' state={location?.pathname }></Navigate>
 
-    return (
-        <div>
+    // return (
+    //     <div>
             
-        </div>
-    );
+    //     </div>
+    // );
 };
 
 export default PrivateRouter;

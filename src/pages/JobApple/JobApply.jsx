@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
 
@@ -8,6 +8,7 @@ const JobApply = () => {
     // console.log(id);
     const {user} = useAuth();
     // console.log(id, user);
+    const navigate = useNavigate();
 
 
     const submitJobApplication = e =>{
@@ -41,7 +42,7 @@ const JobApply = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if(data.insertId){
+                if(data.insertedId){
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
@@ -49,11 +50,12 @@ const JobApply = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    navigate('/myApplications')
                 }
-            })
+        });
     }
     return (
-     <div className="card bg-base-100 w-2/5 mx-auto shadow-2xl">
+     <div className="card bg-base-100 w-full md:w-full lg:w-2/5 mx-auto shadow-2xl">
             <form onSubmit={submitJobApplication} className="card-body">
             <h2 className='text-2xl text-blue-600 font-bold text-center'>Apply Form</h2>
                 <div className="form-control">
