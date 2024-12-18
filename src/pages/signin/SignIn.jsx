@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import auth from "../../firebase/firebase.init";
+import axios from "axios";
 const SignIn = () => {
     
     const {signInUser, loading} = useContext(AuthContext);
@@ -25,8 +26,16 @@ const SignIn = () => {
 
         signInUser(email, password)
             .then(result =>{
-                console.log('Sign In', result.data);
-                navigate(from);
+                console.log('Sign In', result.user.email);
+                const user = {email : result.user.email}
+                // jwt
+                axios.post('http://localhost:5000/jwt', user, {
+                withCredentials : true })
+                    .then(res => {
+                        console.log(res.data);
+                    })
+                // navigate(from);
+                
             })
             .catch(error => {
                 console.log(error);
