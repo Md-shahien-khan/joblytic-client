@@ -96,14 +96,14 @@ const AddJob = () => {
                     <label className="label">
                         <span className="label-text">Minimum Salary</span>
                     </label>
-                    <input type="text" name="min" placeholder="Minimum Salary" className="input input-bordered" required />
+                    <input type="number" name="min" placeholder="Minimum Salary" className="input input-bordered" required />
                     </div>  
                     {/* max salary */}
                     <div className="form-control">
                     <label className="label">
                         <span className="label-text">Maximum Salary</span>
                     </label>
-                    <input type="text" name="max" placeholder="Maximum Salary" className="input input-bordered" required />
+                    <input type="number" name="max" placeholder="Maximum Salary" className="input input-bordered" required />
                     </div>  
                     {/* currency */}
                     <div className="form-control">
@@ -182,7 +182,7 @@ const AddJob = () => {
                 <label className="label">
                     <span className="label-text">Hr Email</span>
                 </label>
-                <input type="email" defaultValue={user?.email} name="hr_email" placeholder="HR Email" className="input input-bordered" required />
+                <input readOnly type="email" defaultValue={user?.email} name="hr_email" placeholder="HR Email" className="input input-bordered" required />
                 </div>
                 {/* Company logo URL*/}
                 <div className="form-control">

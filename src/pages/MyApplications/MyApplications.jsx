@@ -27,7 +27,7 @@ const MyApplications = () => {
                 <thead>
                 <tr>
                     <th>Company</th>
-                    <th>Location</th>
+                    <th>Location</th>no
                     <th>Job Id</th>
                     <th></th>
                 </tr>
