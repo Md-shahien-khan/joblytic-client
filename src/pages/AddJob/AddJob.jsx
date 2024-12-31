@@ -13,7 +13,7 @@ const AddJob = () => {
         // console.log(initialData);
         const {min, max, currency, ...newJob} = initialData;
         // console.log(newJob);
-        newJob.salaryRange = {min, max, currency};
+        newJob.salaryRange = {min: parseInt(min), max : parseInt(max), currency};
         newJob.requirements = newJob.requirements.split('\n');
         newJob.responsibilities = newJob.responsibilities.split('\n');
         console.log(newJob);
@@ -116,7 +116,7 @@ const AddJob = () => {
                         <option>Dollar</option>
                         <option>Ringgit</option>
                         <option>GBP</option>
-                        <option>Japanes Yen</option>
+                        <option>Japanese Yen</option>
                         <option>EURO</option>
                         <option>AED</option>
                         <option>Australian Dollar</option>
